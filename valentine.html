@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Afom ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family: 'Handlee', cursive;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 20% 30%, #ffd6e7 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, #ffe3f1 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, #ffc0cb 0%, #ffb6c1 100%);
+}
+
+.page{
+    position:absolute;
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    transition:1s;
+    padding:20px;
+}
+
+.hidden{opacity:0; pointer-events:none;}
+
+h1{
+    color:white;
+    text-shadow:2px 2px 8px #000;
+}
+
+button{
+    padding:15px 30px;
+    font-size:22px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background:#ff4d6d;
+    color:white;
+    margin:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+#yesBtn{ position:absolute; }
+#noBtn{ background:#28a745; }
+
+/* Gallery */
+.gallery{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+    margin-top:30px;
+}
+
+.polaroid{
+    background:white;
+    padding:15px 15px 50px 15px;
+    width:340px;
+    box-shadow:0 15px 25px rgba(0,0,0,0.4);
+    border-radius:8px;
+    transform:rotate(-2deg);
+    transition:transform 0.3s;
+}
+
+.polaroid:nth-child(2){ transform:rotate(2deg); }
+.polaroid:nth-child(3){ transform:rotate(-1deg); }
+
+.polaroid:hover{ transform:scale(1.05) rotate(0deg); }
+
+.polaroid img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.caption{
+    margin-top:15px;
+    color:#333;
+    font-size:19px;
+}
+
+/* Floating hearts/roses */
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+.heart, .rose{
+    position:fixed;
+    animation:float linear infinite;
+}
+
+/* Flower magic */
+.flowerFall, .flowerRise{
+    position:fixed;
+    font-size:28px;
+    pointer-events:none;
+    z-index:1;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-10vh) rotate(0deg);}
+    100%{transform:translateY(110vh) rotate(360deg);}
+}
+@keyframes rise{
+    0%{transform:translateY(110vh) rotate(0deg);}
+    100%{transform:translateY(-10vh) rotate(-360deg);}
+}
+
+/* Bouquet gentle float */
+@keyframes gentleFloat{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+    100%{transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<!-- Music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b0f5a7c4e.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+    <h1>A little Valentine’s surprise for Afom ❤️</h1>
+    <button onclick="nextPage(1)">Tap here to continue</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page hidden" id="page2">
+    <h1>Do you have a Valentine for Valentine’s Day? 😏</h1>
+    <div style="position:relative; width:100%; height:300px;">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn" onclick="nextPage(2)">No</button>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page hidden" id="page3" style="overflow-y:auto;">
+    <div class="gallery">
+        <div class="polaroid">
+            <img src="photo1.jpg">
+            <div class="caption">
+                This is to a special lady who has a beautiful soul and has an amazing personality
+            </div>
+        </div>
+
+        <div class="polaroid">
+            <img src="photo2.jpg">
+            <div class="caption">
+                Even though you been through a lot you stay true to your heart and stay very kind
+            </div>
+        </div>
+
+        <div class="polaroid">
+            <img src="photo3.jpg">
+            <div class="caption">
+                Even though you deserve the world this is a little surprise for you Afom
+            </div>
+        </div>
+    </div>
+
+    <button onclick="nextPage(3)">Tap here for the final surprise</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page hidden" id="page4" style="background:linear-gradient(#ffb6c1,#ffc0cb); overflow:hidden;">
+    <div style="position:relative; z-index:2; text-align:center;">
+
+        <h1 style="font-size:48px; color:white; text-shadow:3px 3px 10px #000;">
+            These flowers are for you Afom 🌸
+        </h1>
+
+        <img src="photo4.jpg" style="
+            width:320px;
+            margin:25px 0;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+            animation: gentleFloat 4s ease-in-out infinite;
+        ">
+
+        <h2 style="color:white;">Happy Valentine’s Day ❤️</h2>
+
+        <p style="color:white; font-size:22px; max-width:700px;">
+            If distance had a smell, it would be roses missing you.
+        </p>
+    </div>
+</div>
+
+<script>
+function nextPage(n){
+    document.getElementById("page"+n).classList.add("hidden");
+    const next = document.getElementById("page"+(n+1));
+    next.classList.remove("hidden");
+
+    if(n+1 === 4){
+        startFlowerMagic();
+    }
+}
+
+/* YES button escape */
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+
+yesBtn.addEventListener("mouseover",()=>{
+    yesBtn.style.top=Math.random()*250+"px";
+    yesBtn.style.left=Math.random()*300+"px";
+    let size=parseInt(window.getComputedStyle(noBtn).fontSize);
+    noBtn.style.fontSize=(size+3)+"px";
+});
+
+/* Floating hearts and roses */
+setInterval(()=>{
+    const el=document.createElement("div");
+    el.className=Math.random()>0.5?"heart":"rose";
+    el.innerHTML= el.className==="heart" ? "❤️" : "🌹";
+    el.style.left=Math.random()*100+"vw";
+    el.style.fontSize=(Math.random()*20+15)+"px";
+    el.style.animationDuration=(Math.random()*3+5)+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),8000);
+},400);
+
+/* Flower magic */
+function startFlowerMagic(){
+    setInterval(()=>{
+        const f=document.createElement("div");
+        f.className="flowerFall";
+        f.innerHTML="🌸";
+        f.style.left=Math.random()*100+"vw";
+        f.style.animation=`fall ${Math.random()*5+5}s linear`;
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),10000);
+    },300);
+
+    setInterval(()=>{
+        const f=document.createElement("div");
+        f.className="flowerRise";
+        f.innerHTML="🌹";
+        f.style.left=Math.random()*100+"vw";
+        f.style.animation=`rise ${Math.random()*6+6}s linear`;
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),12000);
+    },500);
+}
+</script>
+
+</body>
+</html>
+
