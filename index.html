@@ -12,10 +12,6 @@ body{
     margin:0;
     font-family: 'Handlee', cursive;
     overflow:hidden;
-    background:
-      radial-gradient(circle at 20% 30%, #ffd6e7 0%, transparent 40%),
-      radial-gradient(circle at 80% 70%, #ffe3f1 0%, transparent 40%),
-      radial-gradient(circle at 50% 50%, #ffc0cb 0%, #ffb6c1 100%);
 }
 
 .page{
@@ -64,7 +60,7 @@ button{
 }
 
 .polaroid{
-    background:white;
+    background:#fff8f8;
     padding:15px 15px 50px 15px;
     width:340px;
     box-shadow:0 15px 25px rgba(0,0,0,0.4);
@@ -81,7 +77,8 @@ button{
 .polaroid img{
     width:100%;
     height:300px;
-    object-fit:cover;
+    object-fit:contain;
+    background:#eee;
     border-radius:4px;
 }
 
@@ -91,7 +88,7 @@ button{
     font-size:19px;
 }
 
-/* Floating hearts/roses */
+/* Animations */
 @keyframes float{
     0%{transform:translateY(100vh);}
     100%{transform:translateY(-10vh);}
@@ -101,7 +98,6 @@ button{
     animation:float linear infinite;
 }
 
-/* Flower magic */
 .flowerFall, .flowerRise{
     position:fixed;
     font-size:28px;
@@ -118,7 +114,6 @@ button{
     100%{transform:translateY(-10vh) rotate(-360deg);}
 }
 
-/* Bouquet gentle float */
 @keyframes gentleFloat{
     0%{transform:translateY(0);}
     50%{transform:translateY(-12px);}
@@ -128,19 +123,18 @@ button{
 </head>
 <body>
 
-<!-- Music -->
 <audio autoplay loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b0f5a7c4e.mp3" type="audio/mpeg">
 </audio>
 
 <!-- PAGE 1 -->
-<div class="page" id="page1">
+<div class="page" id="page1" style="background:linear-gradient(#ffb6c1,#ffc0cb);">
     <h1>A little Valentine’s surprise for Afom ❤️</h1>
     <button onclick="nextPage(1)">Tap here to continue</button>
 </div>
 
 <!-- PAGE 2 -->
-<div class="page hidden" id="page2">
+<div class="page hidden" id="page2" style="background:linear-gradient(#ffb6c1,#ffc0cb);">
     <h1>Do you have a Valentine for Valentine’s Day? 😏</h1>
     <div style="position:relative; width:100%; height:300px;">
         <button id="yesBtn">Yes</button>
@@ -149,7 +143,8 @@ button{
 </div>
 
 <!-- PAGE 3 -->
-<div class="page hidden" id="page3" style="overflow-y:auto;">
+<div class="page hidden" id="page3" style="overflow-y:auto;
+background:linear-gradient(#ffb6c1,#ffc0cb);">
     <div class="gallery">
         <div class="polaroid">
             <img src="photo1.jpg">
@@ -184,12 +179,10 @@ button{
             These flowers are for you Afom 🌸
         </h1>
 
-        <img src="photo4.jpg" style="
-            width:320px;
-            margin:25px 0;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
-            animation: gentleFloat 4s ease-in-out infinite;
-        ">
+        <div style="display:flex; gap:40px; justify-content:center; align-items:center; flex-wrap:wrap; margin:25px 0;">
+            <img src="photo4.jpg" style="width:320px; animation: gentleFloat 4s ease-in-out infinite;">
+            <img src="meme.png" style="width:260px; animation: gentleFloat 5s ease-in-out infinite;">
+        </div>
 
         <h2 style="color:white;">Happy Valentine’s Day ❤️</h2>
 
@@ -204,13 +197,9 @@ function nextPage(n){
     document.getElementById("page"+n).classList.add("hidden");
     const next = document.getElementById("page"+(n+1));
     next.classList.remove("hidden");
-
-    if(n+1 === 4){
-        startFlowerMagic();
-    }
+    if(n+1 === 4){ startFlowerMagic(); }
 }
 
-/* YES button escape */
 const yesBtn=document.getElementById("yesBtn");
 const noBtn=document.getElementById("noBtn");
 
@@ -221,7 +210,6 @@ yesBtn.addEventListener("mouseover",()=>{
     noBtn.style.fontSize=(size+3)+"px";
 });
 
-/* Floating hearts and roses */
 setInterval(()=>{
     const el=document.createElement("div");
     el.className=Math.random()>0.5?"heart":"rose";
@@ -233,7 +221,6 @@ setInterval(()=>{
     setTimeout(()=>el.remove(),8000);
 },400);
 
-/* Flower magic */
 function startFlowerMagic(){
     setInterval(()=>{
         const f=document.createElement("div");
@@ -259,4 +246,3 @@ function startFlowerMagic(){
 
 </body>
 </html>
-
